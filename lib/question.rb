@@ -1,5 +1,6 @@
 class Question
-  def question
+  attr_reader :question, :correct
+  def initialize
     num1 = rand(1..20)
     num2 = rand(1..20)
     @correct = num1 + num2
