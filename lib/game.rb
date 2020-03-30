@@ -1,5 +1,4 @@
-# set player 1 to current_player
-# initialize next turn
+# initialize new turn
 #   print question
 #   accept user answer
 #   check answer
@@ -18,29 +17,25 @@ class Game
 
   def start
   # --- Loop over game sequence until current_player has 0 lives
-  # puts @players
-    # loop do
-    #   if player.lives = 0
-    #     puts "Game over! algdjdjlgad"
-    #     break
-    #   else
-    for player in @players
-      if player.lives == 0
-        puts "Game over! #{player.name} lost!"
+    loop do
+      # check if any player is out of lives and end the game
+      if @players[0].lives == 0
+        puts "----- GAME OVER -----"
+        puts "#{@players[1].name} wins with #{@players[1].lives} remaining lives!"
+        break
+      elsif @players[1].lives == 0
+        puts "----- GAME OVER -----"
+        puts "#{@players[0].name} wins with #{@players[0].lives} remaining lives!"
         break
       else
-        next_turn = Turn.new(player)
+        for player in @players
+          next_turn = Turn.new(player)
+          if player.lives == 0
+            # break out of loop and start do loop if player.lives = 0 (ends game)
+            break
+          end
+        end
       end
-    # end
-    # if player.lives != 0
-    #   self.start
     end
-    #   end
-    # end
-  # if @p1.lives == 0
-  #   puts "Game over! #{@p2.name} wins with remaining lives #{@p2.lives}/3."
-  # elsif @p2.lives == 0
-  #   puts "Game over! #{@p1.name} wins with remaining lives #{@p1.lives}/3."
-  # end
   end
 end
